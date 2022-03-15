@@ -5,11 +5,6 @@ import Welcome from './components/WelcomePage';
 function App() {
     const [data, setData] = useState(null);
   
-  useEffect( () => {
-    fetch('/Api')
-    .then((res) => res.json())
-    .then((data) => setData(data.message))
-  })
 
   const [user, setUser] = useState({name: '', email: ''});
   const [error, setError] = useState('')
@@ -31,6 +26,7 @@ function App() {
   return (
     <div className="App">
       <Welcome />
+      <CreateUserForm />
     </div>
     
   );

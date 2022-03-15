@@ -4,7 +4,8 @@ function LoginForm ({Login, error}) {
     const [details, setDetails] = useState({
         name: "", 
         email: "",
-        password: ""
+        password: "", 
+        country: ""
     })
 
     const submitHandler = e => {
@@ -15,7 +16,7 @@ function LoginForm ({Login, error}) {
     }
 
   return (
-    <form onSubmit={submitHandler}> 
+    <form action="/users" method='POST'> 
         <div className='form-inner'>
             <h2>Login</h2>
             { (error !== "") ? ( <div className='error'> {error} </div>) : "" }
@@ -39,6 +40,14 @@ function LoginForm ({Login, error}) {
                         <input type="password" name="password" id="password"
                         onChange={e => setDetails({...details, password: e.target.value})} value={details.password}></input>
                         </div>
+                        <div className='form-group'>
+                     <label htmlFor='country'>
+                         Country:
+                         </label>
+                         <input type="text" name="country" id="country"
+                         onChange={e => setDetails({...details, country: e.target.value})} value={details.country}>
+                        </input>
+                </div>
                         <input type="submit" value="Login"></input>
          </div>
     </form>

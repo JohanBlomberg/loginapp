@@ -4,12 +4,20 @@ function CreateUserForm ({CreateUser, error}) {
     const [details, setDetails] = useState({
         name: "", 
         email: "",
-        password: ""
+        password: "",
+        country: ""
     })
 
-    const submitHandler = e => {
+
+
+    const submitHandler = async e => {
         e.preventDefault()
-        CreateUser(details)
+        fetch('/users', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(details)
+        })
+      
     }
 
   return (
@@ -36,6 +44,14 @@ function CreateUserForm ({CreateUser, error}) {
                         </label>    
                         <input type="password" name="password" id="password"
                         onChange={e => setDetails({...details, password: e.target.value})} value={details.password}></input>
+                        </div>
+                        <div className='form-group'>
+                     <label htmlFor='country'>
+                         Country:
+                         </label>
+                         <input type="text" name="country" id="country"
+                         onChange={e => setDetails({...details, country: e.target.value})} value={details.country}>
+                        </input>
                         </div>
                         <input type="submit" value="Create"></input>
          </div>
