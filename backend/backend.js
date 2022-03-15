@@ -25,7 +25,7 @@ app.get("/add-blog", (req, res) => {
         res.send(result)
     })
     .catch((error) => {
-        console.log(err)
+        console.log(error)
     })
 })
 
