@@ -1,16 +1,14 @@
 import React, {useState} from 'react'
+import { Link } from "react-router-dom"
 import LoginForm from './LoginForm'
-import CreateUserForm from './CreateUserForm';
 
 function Welcome () {
   const [user, setUser] = useState({name: '', email: ''});
-  const [error, setError] = useState('')
-
-
+ 
       const Logout = () => {
         setUser({ name: "", email: ""});
       }
-    return (
+    return (       
         <div>
         <h1>Welcome to Samirs shop, please log in!</h1>
         {(user.email !== "") ? (
@@ -21,7 +19,9 @@ function Welcome () {
      ) : (
       <LoginForm/>
      )}
-    <p>New member? click here</p>         
+     
+    <p>New member? <Link to="/createUser">click here</Link></p>    
+    
         </div>
     )
 }

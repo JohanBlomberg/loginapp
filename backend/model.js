@@ -12,7 +12,7 @@ const Schema = mongoose.Schema({
         type: String,
         required: true
     },
-    country: {
+    bread: {
         type: String,
         required: true
     }

@@ -1,34 +1,21 @@
 import React, { useState, useEffect } from 'react'
 import CreateUserForm from './components/CreateUserForm';
 import Welcome from './components/WelcomePage';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
+import LoggedIn from './components/LoggedIn';
 
 function App() {
-    const [data, setData] = useState(null);
-  
-
-  const [user, setUser] = useState({name: '', email: ''});
-  const [error, setError] = useState('')
-
-  const Logout = () => {
-    setUser({ name: "", email: ""});
-  }
-
-  const CreateUser = newUser => {
-    console.log(newUser)
-    setUser({
-      name: newUser.name,
-      email: newUser.email,
-      password: newUser.password
-    })
-  }
-
-
-  return (
+     return (
+       <Router>
     <div className="App">
-      <Welcome />
-      <CreateUserForm />
+      <Routes>
+        <Route path="/" element={<Welcome />}></Route>
+        <Route path="/createUser" element={<CreateUserForm />}></Route>
+        <Route path="/loggedIn" element={<LoggedIn />}></Route>
+        <Route path="*" element={<Welcome />}></Route>
+      </Routes>
     </div>
-    
+    </Router>
   );
 }
 

@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import LoggedIn from './LoggedIn'
+import Welcome from './WelcomePage'
 
 function LoginForm ({Login, error}) {
     const [details, setDetails] = useState({
@@ -17,7 +19,9 @@ function LoginForm ({Login, error}) {
             return response.json()
         })
         .then((data) => {
-            console.log(data)
+            const areYouLoggedIn = data.loggedIn
+            return areYouLoggedIn
+            
         })
     }
 
@@ -25,9 +29,7 @@ function LoginForm ({Login, error}) {
     <form onSubmit={submitHandler}> 
         <div className='form-inner'>
             <h2>Login</h2>
-            { (error !== "") ? ( <div className='error'> {error} </div>) : "" }
-
-            
+                       
                  <div className='form-group'>
                      <label htmlFor='email'>
                          Email:
@@ -48,6 +50,7 @@ function LoginForm ({Login, error}) {
          </div>
     </form>
   )
+  console.log(areYouLoggedIn)
 }
 
 export default LoginForm

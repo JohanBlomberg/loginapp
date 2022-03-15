@@ -5,7 +5,6 @@ const app = express();
 const dbURL = 'mongodb+srv://LoginApp:7UAe3wKQjURLP67I@cluster0.0ieve.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 const PORT = process.env.PORT || 3002;
 const Model = require ('./model')
-const postsRoute = require('./routes/users');
 
 app.set('view engine', 'ejs')
 
@@ -39,7 +38,7 @@ app.post('/api/login', async (req, res) => {
 
     if (userEmail && userPassword) {
         console.log("User logged in")
-        res.send({message: "Logged in"})
+        res.send({loggedIn: true})
     } else {
         console.log('Users doesnt match')
         res.send({message: "Not logged in"})
