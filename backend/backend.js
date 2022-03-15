@@ -34,10 +34,10 @@ app.post('/api/login', async (req, res) => {
     console.log(req.body)
 
     const userEmail = await Model.exists({ email: req.body.email });
-    const userPassword = await Model.exists({ email: req.body.password });
+    const userPassword = await Model.exists({ password: req.body.password });
     
 
-    if (userEmail === req.body.email && userPassword === req.body.password) {
+    if (userEmail && userPassword) {
         console.log("User logged in")
         res.send({message: "Logged in"})
     } else {
