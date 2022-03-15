@@ -14,37 +14,46 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true}))
 app.use(morgan('dev'))
 
-app.post('/users', (req, res) => {
-    console.log('Vad du vill')
-    console.log(req.body)
-    const user = new Model(req.body)
+app.post('/api/users', (req, res) => {
+        const user = new Model(req.body)
 
     user.save()
-    .then((result) => {
-        res.send(result)
-    })
-    .catch((err) => {
-        console.log(err)
-    })
+})
+
+app.post('/api/login', (req, res) => {
+        Model.find()
+        .then((data) => {
+            console.log(data)
+            console.log(req.body)
+            res.send({isLoggedIn: "Njiet"})
+            // if (req.body == data) {
+            //     login :)
+            // }
+            // else {
+            //     NOT LOGGED IN
+            // }
+        })
 })
 
 
-app.get("/add-blog", (req, res) => {
-    const blog = new Model({
-        name: 'Johan Blomberg',
-        email: 'test@test.com',
-        password: 'superman123',
-        country: 'Sweden'
-    });
 
-    blog.save()
-    .then((result) => {
-        res.send(result)
-    })
-    .catch((error) => {
-        console.log(error)
-    })
-})
+
+// app.get("/add-blog", (req, res) => {
+//     const blog = new Model({
+//         name: 'Johan Blomberg',
+//         email: 'test@test.com',
+//         password: 'superman123',
+//         country: 'Sweden'
+//     });
+
+//     blog.save()
+//     .then((result) => {
+//         res.send(result)
+//     })
+//     .catch((error) => {
+//         console.log(error)
+//     })
+// })
 
 
     mongoose.connect(dbURL,

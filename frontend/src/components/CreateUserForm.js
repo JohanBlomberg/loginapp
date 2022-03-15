@@ -12,12 +12,11 @@ function CreateUserForm ({CreateUser, error}) {
 
     const submitHandler = async e => {
         e.preventDefault()
-        fetch('/users', {
+        fetch('/api/users', {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify(details)
         })
-      
     }
 
   return (
