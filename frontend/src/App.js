@@ -31,7 +31,6 @@ function App() {
   return (
     <div className="App">
       <Welcome />
-      {/* <CreateUserForm CreateUser={CreateUser} error={error}/> */}
     </div>
     
   );
