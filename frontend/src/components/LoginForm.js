@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
-import LoggedIn from './LoggedIn'
-import Welcome from './WelcomePage'
+import {useNavigate} from 'react-router-dom';
 
-function LoginForm ({Login, error}) {
+function LoginForm () {
+    const navigate = useNavigate();
+    const [error, setError] = useState ("");
+
     const [details, setDetails] = useState({
         email: "", 
         password: ""
@@ -19,9 +21,11 @@ function LoginForm ({Login, error}) {
             return response.json()
         })
         .then((data) => {
-            const areYouLoggedIn = data.loggedIn
-            return areYouLoggedIn
-            
+            if(data.loggedIn == true) {
+                navigate('/loggedIn')
+            } else {
+                setError(data.message)
+            }
         })
     }
 
@@ -29,13 +33,15 @@ function LoginForm ({Login, error}) {
     <form onSubmit={submitHandler}> 
         <div className='form-inner'>
             <h2>Login</h2>
-                       
+             <div className='errorMessage'>
+                 {error}
+             </div>
                  <div className='form-group'>
                      <label htmlFor='email'>
                          Email:
                          </label>
                          <input type="email" name="email" id="email"
-                         onChange={e => setDetails({...details, email: e.target.value.toLowerCase()})} value={details.email}>
+                         onChange={e => setDetails({...details, email: e.target.value})} value={details.email}>
                         </input>
                 </div>
                         <div className="form-group">
@@ -45,12 +51,10 @@ function LoginForm ({Login, error}) {
                         <input type="password" name="password" id="password"
                         onChange={e => setDetails({...details, password: e.target.value})} value={details.password}></input>
                         </div>
-                        
                         <input type="submit" value="Login"></input>
          </div>
     </form>
   )
-  console.log(areYouLoggedIn)
 }
 
 export default LoginForm
