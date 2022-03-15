@@ -12,7 +12,7 @@ function CreateUserForm ({CreateUser, error}) {
 
     const submitHandler = async e => {
         e.preventDefault()
-        fetch('/api/users', {
+        fetch("/api/users", {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify(details)
@@ -34,8 +34,8 @@ function CreateUserForm ({CreateUser, error}) {
                          Email:
                          </label>
                          <input type="email" name="email" id="email"
-                         onChange={e => setDetails({...details, email: e.target.value})} value={details.email}>
-                        </input>
+                         onChange={e => setDetails({...details, email: e.target.value.toLowerCase()})} value={details.email}>
+                        </input> 
                 </div>
                         <div className="form-group">
                         <label htmlFor='password'>

@@ -33,7 +33,7 @@ function LoginForm ({Login, error}) {
                          Email:
                          </label>
                          <input type="email" name="email" id="email"
-                         onChange={e => setDetails({...details, email: e.target.value})} value={details.email}>
+                         onChange={e => setDetails({...details, email: e.target.value.toLowerCase()})} value={details.email}>
                         </input>
                 </div>
                         <div className="form-group">

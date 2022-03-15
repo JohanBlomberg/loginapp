@@ -14,46 +14,37 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true}))
 app.use(morgan('dev'))
 
-app.post('/api/users', (req, res) => {
-        const user = new Model(req.body)
+app.post("/api/users", async (req, res) =>{
+     const user = new Model(req.body)
+    const isEmailAlreadyRegistered = await Model.exists({ email: req.body.email });
+    
 
-    user.save()
-})
+    if (isEmailAlreadyRegistered) {
+        console.log("Email already in use")
+        res.send({message: "This email is already in use"})
+    } else {
+        user.save()
+        res.send({message: "You are now registerd"})
+        console.log("user added to database")
+    } 
+});  
 
-app.post('/api/login', (req, res) => {
-        Model.find()
-        .then((data) => {
-            console.log(data)
-            console.log(req.body)
-            res.send({isLoggedIn: "Njiet"})
-            // if (req.body == data) {
-            //     login :)
-            // }
-            // else {
-            //     NOT LOGGED IN
-            // }
-        })
-})
+app.post('/api/login', async (req, res) => {
+    console.log("request made")
+    console.log(req.body)
 
+    const userEmail = await Model.exists({ email: req.body.email });
+    const userPassword = await Model.exists({ email: req.body.password });
+    
 
-
-
-// app.get("/add-blog", (req, res) => {
-//     const blog = new Model({
-//         name: 'Johan Blomberg',
-//         email: 'test@test.com',
-//         password: 'superman123',
-//         country: 'Sweden'
-//     });
-
-//     blog.save()
-//     .then((result) => {
-//         res.send(result)
-//     })
-//     .catch((error) => {
-//         console.log(error)
-//     })
-// })
+    if (userEmail === req.body.email && userPassword === req.body.password) {
+        console.log("User logged in")
+        res.send({message: "Logged in"})
+    } else {
+        console.log('Users doesnt match')
+        res.send({message: "Not logged in"})
+    } 
+});  
 
 
     mongoose.connect(dbURL,

@@ -21,4 +21,3 @@ const Schema = mongoose.Schema({
 const Model = mongoose.model('Model', Schema)
 module.exports = Model
 
-// module.exports = mongoose.model('models', Schema)
