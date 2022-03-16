@@ -3,7 +3,7 @@ import {useNavigate} from 'react-router-dom';
 
 function LoginForm () {
     const navigate = useNavigate();
-    const [error, setError] = useState ("");
+    const [message, setMessage] = useState ("");
 
     const [details, setDetails] = useState({
         email: "", 
@@ -24,7 +24,7 @@ function LoginForm () {
             if(data.loggedIn == true) {
                 navigate('/loggedIn')
             } else {
-                setError(data.message)
+                setMessage(data.message)
             }
         })
     }
@@ -34,7 +34,7 @@ function LoginForm () {
         <div className='form-inner'>
             <h2>Login</h2>
              <div className='errorMessage'>
-                 {error}
+                 {message}
              </div>
                  <div className='form-group'>
                      <label htmlFor='email'>

@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { Link } from "react-router-dom"
 
 function CreateUserForm ({CreateUser, error}) {
+    const [message, setMessage] = useState ("");
+
     const [details, setDetails] = useState({
         name: "", 
         email: "",
@@ -17,7 +19,13 @@ function CreateUserForm ({CreateUser, error}) {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify(details)
+          })
+          .then((response) => {
+            return response.json()
         })
+        .then((data) => {
+                           setMessage(data.message)
+            })
     }
 
   return (
@@ -25,7 +33,9 @@ function CreateUserForm ({CreateUser, error}) {
         <div className='form-inner'>
             <h2>Create new User</h2>
             <p>Back to <Link to="/WelcomePage">login</Link></p>    
-
+            <div className='errorMessage'>
+                 {message}
+             </div>
             <div className='form-group'>
                 <label htmlFor='name'>Name:</label>
                 <input type="text" name="name" id="name" onChange={e => setDetails({...details, name: e.target.value})} value={details.name}></input>
