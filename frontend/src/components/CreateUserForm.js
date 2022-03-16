@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from "react-router-dom"
 
 function CreateUserForm ({CreateUser, error}) {
     const [details, setDetails] = useState({
@@ -23,7 +24,7 @@ function CreateUserForm ({CreateUser, error}) {
     <form onSubmit={submitHandler}> 
         <div className='form-inner'>
             <h2>Create new User</h2>
-            { (error !== "") ? ( <div className='error'> {error} </div>) : "" }
+            <p>Back to <Link to="/WelcomePage">login</Link></p>    
 
             <div className='form-group'>
                 <label htmlFor='name'>Name:</label>
