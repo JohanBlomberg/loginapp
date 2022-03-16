@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import { Link } from "react-router-dom"
 
-function CreateUserForm ({CreateUser, error}) {
+function CreateUserForm () {
     const [message, setMessage] = useState ("");
 
     const [details, setDetails] = useState({
         name: "", 
         email: "",
         password: "",
-        bread: ""
+        tractor: ""
     })
 
 
@@ -24,46 +24,46 @@ function CreateUserForm ({CreateUser, error}) {
             return response.json()
         })
         .then((data) => {
-                           setMessage(data.message)
+            setMessage(data.message)
             })
     }
 
   return (
     <form onSubmit={submitHandler}> 
         <div className='form-inner'>
-            <h2>Create new User</h2>
-            <p>Back to <Link to="/WelcomePage">login</Link></p>    
+            <h2>Skapa ny användare</h2>
+            <p>Tillbaka till <Link to="/WelcomePage">login</Link></p>    
             <div className='errorMessage'>
                  {message}
              </div>
             <div className='form-group'>
-                <label htmlFor='name'>Name:</label>
-                <input type="text" name="name" id="name" onChange={e => setDetails({...details, name: e.target.value})} value={details.name}></input>
+                <label htmlFor='name'>Namn:</label>
+                <input type="text" name="name" id="name" onChange={e => setDetails({...details, name: e.target.value})} value={details.name} required></input>
             </div>
                  <div className='form-group'>
                      <label htmlFor='email'>
-                         Email:
+                         Mail:
                          </label>
                          <input type="email" name="email" id="email"
-                         onChange={e => setDetails({...details, email: e.target.value.toLowerCase()})} value={details.email}>
+                         onChange={e => setDetails({...details, email: e.target.value.toLowerCase()})} value={details.email} required>
                         </input> 
                 </div>
                         <div className="form-group">
                         <label htmlFor='password'>
-                            Password:
+                            Lösenord:
                         </label>    
                         <input type="password" name="password" id="password"
-                        onChange={e => setDetails({...details, password: e.target.value})} value={details.password}></input>
+                        onChange={e => setDetails({...details, password: e.target.value})} value={details.password} required></input>
                         </div>
                         <div className='form-group'>
-                     <label htmlFor='bread'>
-                         Do you like bread?:
+                     <label htmlFor='tractor'>
+                         Är du en traktor?
                          </label>
-                         <input type="text" name="bread" id="bread"
-                         onChange={e => setDetails({...details, bread: e.target.value})} value={details.bread}>
+                         <input type="text" name="tractor" id="tractor"
+                         onChange={e => setDetails({...details, tractor: e.target.value})} value={details.tractor} required>
                         </input>
                         </div>
-                        <input type="submit" value="Create"></input>
+                        <input type="submit" value="Registrera"></input>
          </div>
     </form>
   )

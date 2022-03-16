@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, Link} from 'react-router-dom';
 
 function LoginForm () {
     const navigate = useNavigate();
@@ -32,13 +32,14 @@ function LoginForm () {
   return (
     <form onSubmit={submitHandler}> 
         <div className='form-inner'>
-            <h2>Login</h2>
+            <h1>Välkommen!</h1>
+            <h2>Vänligen logga in nedan</h2>
              <div className='errorMessage'>
                  {message}
              </div>
                  <div className='form-group'>
                      <label htmlFor='email'>
-                         Email:
+                         Mail:
                          </label>
                          <input type="email" name="email" id="email"
                          onChange={e => setDetails({...details, email: e.target.value})} value={details.email}>
@@ -46,12 +47,14 @@ function LoginForm () {
                 </div>
                         <div className="form-group">
                         <label htmlFor='password'>
-                            Password:
+                            Lösenord:
                         </label>    
                         <input type="password" name="password" id="password"
                         onChange={e => setDetails({...details, password: e.target.value})} value={details.password}></input>
                         </div>
-                        <input type="submit" value="Login"></input>
+                        <input type="submit" value="Logga in"></input>
+
+                        <p>Ny användare? <Link to="/createUser">klicka här</Link></p>   
          </div>
     </form>
   )

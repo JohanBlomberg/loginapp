@@ -12,7 +12,7 @@ const Schema = mongoose.Schema({
         type: String,
         required: true
     },
-    bread: {
+    tractor: {
         type: String,
         required: true
     }

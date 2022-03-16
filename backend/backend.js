@@ -19,29 +19,23 @@ app.post("/api/users", async (req, res) =>{
     
 
     if (isEmailAlreadyRegistered) {
-        console.log("Email already in use")
-        res.send({message: "This email is already in use"})
+        res.send({message: "Mailen är redan registrerad, tröttmössa"})
     } else {
         user.save()
-        res.send({message: "You are now registerd"})
-        console.log("user added to database")
+        res.send({message: "Användaren registrerad!"})
     } 
 });  
 
 app.post('/api/login', async (req, res) => {
-    console.log("request made")
-    console.log(req.body)
-
-    const userEmail = await Model.exists({ email: req.body.email });
+       const userEmail = await Model.exists({ email: req.body.email });
     const userPassword = await Model.exists({ password: req.body.password });
     
 
     if (userEmail && userPassword) {
-        console.log("User logged in")
         res.send({loggedIn: true})
     } else {
         console.log('Users doesnt match')
-        res.send({message: "Not logged in"})
+        res.send({message: "Fel mailadress eller lösenord"})
     } 
 });  
 

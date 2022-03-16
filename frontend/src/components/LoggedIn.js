@@ -1,10 +1,9 @@
-import React, {useState} from 'react'
-import { Link } from "react-router-dom"
+import React from 'react'
 
 function LoggedIn () {
       return (       
-        <div>
-        <h1>Welcome USER! :D</h1>
+        <div className='form-inner'>
+        <h1>Bra jobbat!</h1>
         </div>
     )
 }
