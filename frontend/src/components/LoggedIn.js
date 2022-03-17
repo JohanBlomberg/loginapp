@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 function LoggedIn () {
       return (       
-        <div>
+        <div className='main-div'> 
         <h1>Bra jobbat!</h1>
         <button className="link"><Link to="/"> Logga Ut </Link></button>
         </div>
